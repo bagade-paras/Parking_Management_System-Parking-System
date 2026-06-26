@@ -1,0 +1,273 @@
+================================================================
+SMART PARKING SYSTEM - WEBSITE EXPLANATION
+================================================================
+
+PROJECT OVERVIEW
+----------------
+Smart Parking is a PHP-based web application that allows users to
+book parking slots online, manage vehicles, and pay via UPI.
+Admins manage locations, slots, users, and view revenue analytics.
+
+Tech Stack: PHP 8, MySQL, CSS3, JavaScript, PHPMailer, Chart.js
+
+================================================================
+PUBLIC PAGES
+================================================================
+
+1. index.php (Home Page)
+------------------------
+The landing page for visitors. Contains:
+- Navbar with links to Home, About, Contact, Login, Get Started
+- Hero section with tagline "Park Smarter, Save Time & Money"
+- Live parking slot demo (visual grid showing available/booked slots)
+- Stats counter: Happy Users, Bookings Made, Locations, Uptime
+- "How It Works" section (4 steps: Register > Location > Slot > Pay)
+- Features grid (8 features: Multiple Locations, Visual Slot Selection,
+  UPI Payment, Vehicle Management, Extend Booking, History, Reminders, Admin Dashboard)
+- Testimonials from 3 users
+- CTA banner to register
+- Dark mode toggle, mobile responsive menu
+
+2. login.php (Login Page)
+--------------------------
+Handles login for both Users and Admins.
+- Role selector: User or Admin (radio buttons)
+- Email + Password fields with show/hide toggle
+- On success: redirects to respective dashboard
+- On failure: shows error message
+- Link to register page
+
+3. register.php (Registration Page)
+-------------------------------------
+New user registration form.
+- Fields: Full Name, Phone, Email, Password
+- Password strength checker (live bar + requirements checklist)
+- Requirements: 6+ chars, uppercase, lowercase, number, special char
+- On success: redirects to login with success message
+- Duplicate email check
+
+4. pages/about.php (About Page)
+---------------------------------
+Company information page. Contains:
+- Hero with tagline "Smarter Parking for Everyone"
+- Stats: 5000+ Users, 120 Locations, 18000+ Bookings, 99% Uptime
+- Mission, Vision, Values cards
+- Timeline: 2022 (Idea) > 2023 (Beta) > 2024 (Full Launch) > 2025 (Growth)
+- Key Features grid (8 features)
+- Team section: Manav (Leader), Fenil (Frontend), Yug (Backend), Paras (Tech)
+- Tech Stack chips: PHP 8, MySQL, CSS3, JavaScript, Sessions, Responsive
+- FAQ accordion (6 questions)
+- CTA to register
+
+5. pages/contact.php (Contact Page)
+--------------------------------------
+Contact form and info page. Contains:
+- Info cards: Office address (Surat, Gujarat), Email, Phone, Working Hours
+- Contact form: Name, Email, Phone, Subject (dropdown), Message
+- Subject options: General Inquiry, Booking Issue, Payment Problem,
+  Account Help, Feature Request, Bug Report, Other
+- Messages saved to contact_messages table in database
+- Sidebar: Quick Help links, Social media links, Response time badge
+- Google Maps embed placeholder for Surat location
+- Character counter for message field (max 1000)
+
+================================================================
+USER PAGES (requires login)
+================================================================
+
+6. user/user_dashboard.php (User Dashboard)
+---------------------------------------------
+Main dashboard after user login. Shows:
+- Active booking widget with live countdown timer (if currently parked)
+- Upcoming booking widget (if a future booking exists)
+- Stats: Total Spent, My Vehicles, Total Bookings, This Month spend
+- Bar + Line chart: Booking activity over last 6 months (Chart.js)
+- Quick Actions: Book Slot, My Bookings, My Vehicles, Profile, Support
+- Recent Bookings table (last 5)
+
+7. user/book_slot.php (Book a Slot - Step 1)
+----------------------------------------------
+Step 1 of the booking flow. User selects:
+- Parking Location (dropdown showing only locations with available slots)
+- Vehicle (from registered vehicles)
+- Google Maps embed preview when location is selected
+- Shows rate per hour and available slot count
+- Redirects to select_time.php on submit
+
+8. user/select_time.php (Step 2 - Select Time)
+------------------------------------------------
+Step 2: User picks booking date/time and duration (hours).
+
+9. user/select_slot.php (Step 3 - Choose Slot)
+------------------------------------------------
+Step 3: Visual grid of slots. User picks a specific slot.
+Green = available, Red = booked.
+
+10. user/booking_summary.php (Step 4 - Summary)
+-------------------------------------------------
+Shows booking summary before payment: location, slot, time, amount.
+
+11. user/payment.php / create_order.php (Payment)
+---------------------------------------------------
+Handles UPI/Razorpay payment flow.
+- create_order.php creates the payment order
+- payment.php shows the payment interface
+
+12. user/payment_success.php (Payment Confirmation)
+-----------------------------------------------------
+Shown after successful payment. Confirms booking and shows details.
+
+13. user/booking_history.php (Booking History)
+------------------------------------------------
+Full list of all user bookings with filter tabs:
+- All, Active Now, Upcoming, Booked, Completed, Cancelled
+- Table columns: #, Location, Slot, Entry, Exit, Hours, Amount, Status, Time Left, Action
+- Actions: Extend (active only), View Receipt, Cancel (booked only)
+- Live countdown timer for active/upcoming bookings
+
+14. user/extend_booking.php / extend_success.php (Extend Booking)
+-------------------------------------------------------------------
+Allows user to add more hours to an active booking.
+- extend_success.php confirms the extension with new exit time.
+
+15. user/receipt.php / download_receipt.php (Receipt)
+-------------------------------------------------------
+View or download a PDF receipt for any booking.
+
+16. user/add_vehicle.php (Vehicle Management)
+-----------------------------------------------
+Add, view, and delete registered vehicles.
+- Fields: Vehicle Number, Type (Car/Bike/etc.)
+
+17. user/profile.php (User Profile)
+--------------------------------------
+View and update personal info: Name, Email, Phone, Password.
+
+18. user/support.php (Support)
+--------------------------------
+User support/contact form within the dashboard.
+
+19. user/send_reminder.php (Email Reminder)
+---------------------------------------------
+Sends email reminder to user before booking starts (uses PHPMailer).
+
+================================================================
+ADMIN PAGES (requires admin login)
+================================================================
+
+20. admin/admin_dashboard.php (Admin Dashboard)
+-------------------------------------------------
+Main admin control panel. Shows:
+- Stat cards: Total Users, Vehicles, Bookings, Revenue
+- Unread contact messages widget (super admin only)
+- Top Insights: Most Booked Location, Top Paying User, Busiest Day, Most Booked Slot
+- Revenue Chart with Daily/Weekly/Monthly toggle (Chart.js)
+- Quick Actions grid
+- Slot Occupancy per location (progress bars, % full)
+- Recent Bookings table (last 5)
+- Recent Payments table (last 5)
+- Live clock + auto-refresh every 30 seconds
+- Sub-admin sees only their assigned location's data
+
+21. admin/manage_locations.php (Manage Locations)
+---------------------------------------------------
+Add, edit, delete parking locations.
+- Fields: Location Name, Address, Rate per Hour, Total Slots
+
+22. admin/manage_slots.php (Manage Slots)
+-------------------------------------------
+Add/edit/delete individual slots per location.
+- Set slot status: available, booked, maintenance
+
+23. admin/manage_subadmins.php (Manage Sub-Admins)
+----------------------------------------------------
+Super admin creates sub-admin accounts assigned to specific locations.
+
+24. admin/view_users.php (View Users)
+---------------------------------------
+List of all registered users with search functionality.
+
+25. admin/view_vehicles.php (View Vehicles)
+---------------------------------------------
+List of all registered vehicles across all users.
+
+26. admin/view_bookings.php (View Bookings)
+---------------------------------------------
+All bookings with filters and search. Admin can update booking status.
+
+27. admin/view_payments.php (View Payments)
+---------------------------------------------
+All payment records with method, amount, date, user info.
+
+28. admin/view_messages.php (View Messages)
+---------------------------------------------
+Contact form messages from users. Mark as read/unread.
+
+29. admin/revenue.php (Revenue Analytics)
+-------------------------------------------
+Detailed revenue reports with charts and filters by date/location.
+
+30. admin/search.php (Search)
+-------------------------------
+Global search across bookings, users, vehicles.
+
+================================================================
+INCLUDES / SHARED FILES
+================================================================
+
+- includes/db_connect.php     - MySQL database connection
+- includes/auth_user.php      - Redirects to login if not logged in (user)
+- includes/auth_admin.php     - Redirects to login if not logged in (admin)
+- includes/header.php         - Shared HTML head/nav for dashboard pages
+- includes/footer.php         - Shared footer for dashboard pages
+- includes/public_footer.php  - Footer for public pages (index, about, contact)
+- includes/user_sidebar.php   - Left sidebar navigation for user dashboard
+- includes/admin_sidebar.php  - Left sidebar navigation for admin dashboard
+- includes/razorpay_config.php - Razorpay API keys configuration
+- includes/PHPMailer/          - PHPMailer library for sending emails
+
+================================================================
+OTHER FILES
+================================================================
+
+- database.sql   - SQL file to create all database tables
+- logout.php     - Destroys session and redirects to login
+- fix_admin.php  - Utility script to fix/reset admin account
+- migrate.php    - Database migration script
+
+================================================================
+DATABASE TABLES (from database.sql)
+================================================================
+
+- users           - Registered user accounts
+- admin           - Admin and sub-admin accounts
+- vehicles        - User vehicles
+- locations       - Parking locations
+- slots           - Individual parking slots per location
+- bookings        - All booking records
+- payments        - Payment transactions
+- contact_messages - Messages from contact form
+
+================================================================
+USER FLOW SUMMARY
+================================================================
+
+1. Visitor lands on index.php
+2. Clicks "Get Started" -> register.php -> creates account
+3. Logs in via login.php -> redirected to user_dashboard.php
+4. Adds a vehicle via add_vehicle.php
+5. Books a slot: book_slot.php > select_time.php > select_slot.php
+   > booking_summary.php > payment.php > payment_success.php
+6. Views bookings in booking_history.php
+7. Can extend active booking or download receipt
+
+ADMIN FLOW SUMMARY
+------------------
+1. Admin logs in via login.php (selects Admin role)
+2. Lands on admin_dashboard.php
+3. Manages locations, slots, users, bookings, payments, revenue
+4. Super admin can create sub-admins for specific locations
+
+================================================================
+END OF EXPLANATION
+================================================================
