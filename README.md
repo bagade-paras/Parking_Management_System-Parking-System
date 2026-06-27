@@ -10,8 +10,9 @@ A robust, full-stack PHP & MySQL web application designed to streamline urban pa
 
 ## 👥 Contributors
 
-* **Fenil Katkatiya**
 * **Paras Bagade**
+* **Fenil Katkatiya**
+
 
 > This project was developed collaboratively.
 
