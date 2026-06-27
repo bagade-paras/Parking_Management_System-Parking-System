@@ -8,13 +8,14 @@ A robust, full-stack PHP & MySQL web application designed to streamline urban pa
 
 ---
 
-## 👥 Contributors
+## 🤝 Collaborators
 
-* **Paras Bagade**
-- [Fenil Katkatiya](https://github.com/FENIL-KATKATIYA)
+| Name | GitHub |
+|------|--------|
+| Fenil Katkatiya | https://github.com/FENIL-KATKATIYA |
+| Paras Bagade | https://github.com/bagade-paras |
 
-
-> This project was developed collaboratively.
+> Developed collaboratively as a team project.
 
 ---
 
