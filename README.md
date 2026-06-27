@@ -11,7 +11,7 @@ A robust, full-stack PHP & MySQL web application designed to streamline urban pa
 ## 👥 Contributors
 
 * **Paras Bagade**
-* **Fenil Katkatiya**
+- [Fenil Katkatiya](https://github.com/FENIL-KATKATIYA)
 
 
 > This project was developed collaboratively.
